@@ -17,6 +17,8 @@ defmodule QueroApiWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       # Import conveniences for testing with channels
@@ -29,10 +31,10 @@ defmodule QueroApiWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(QueroApi.Repo)
+    :ok = Sandbox.checkout(QueroApi.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(QueroApi.Repo, {:shared, self()})
+      Sandbox.mode(QueroApi.Repo, {:shared, self()})
     end
 
     :ok
