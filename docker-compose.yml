@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: postgres
+    restart: always
+    image: icarorobertos/postgres-9.6-multiple-database:1.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_MULTIPLE_DATABASES: quero_api,quero_api_dev,quero_api_test
+    ports:
+      - 5432:5432
+
+  adminer:
+    container_name: adminer
+    restart: always
+    image: adminer
+    ports:
+      - 8080:8080
