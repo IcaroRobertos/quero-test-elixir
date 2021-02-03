@@ -4,7 +4,7 @@ defmodule QueroApi.CourseRepository do
   """
   import Ecto.Query
 
-  alias QueroApi.{Course, Repo}
+  alias QueroApi.{Course, Repo, University}
 
   def create_course(attrs \\ %{}) do
     %Course{}
