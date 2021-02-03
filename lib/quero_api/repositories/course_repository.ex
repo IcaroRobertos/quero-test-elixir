@@ -10,4 +10,9 @@ defmodule QueroApi.CourseRepository do
     |> Course.changeset(attrs)
     |> Repo.insert()
   end
+
+  def list_courses do
+    Repo.all(Course)
+    |> Repo.preload([{:campus, :university}])
+  end
 end

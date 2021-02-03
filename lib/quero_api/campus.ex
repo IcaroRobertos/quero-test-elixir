@@ -6,9 +6,11 @@ defmodule QueroApi.Campus do
   import Ecto.Changeset
 
   schema "campus" do
-    field :university_id, :integer
     field :city, :string
     field :name, :string
+
+    belongs_to :university, QueroApi.University
+    has_many :courses, QueroApi.Course
 
     timestamps()
   end

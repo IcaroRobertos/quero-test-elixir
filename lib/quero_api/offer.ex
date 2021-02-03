@@ -6,13 +6,14 @@ defmodule QueroApi.Offer do
   import Ecto.Changeset
 
   schema "offers" do
-    field :course_id, :integer
     field :discount_percentage, :float
     field :enabled, :boolean
     field :enrollment_semester, :string
     field :full_price, :float
     field :price_with_discount, :float
     field :start_date, :string
+
+    belongs_to :course, QueroApi.Course
 
     timestamps()
   end
