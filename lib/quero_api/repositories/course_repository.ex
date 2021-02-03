@@ -4,7 +4,7 @@ defmodule QueroApi.CourseRepository do
   """
   import Ecto.Query
 
-  alias QueroApi.{Course, Repo}
+  alias QueroApi.{Course, Repo, University}
 
   def create_course(attrs \\ %{}) do
     %Course{}
@@ -13,19 +13,18 @@ defmodule QueroApi.CourseRepository do
   end
 
   def list_courses(filters \\ nil) do
-    result =
+    if filters["university"] do
+      from(c in Course,
+        join: campus in assoc(c, :campus),
+        join: university in assoc(campus, :university),
+        on: university.name == ^filters["university"]
+      )
+    else
       from(c in Course)
-      |> filter(filters)
-      |> Repo.all()
-      |> Repo.preload([{:campus, :university}])
-
-    case filters["university"] do
-      nil ->
-        result
-
-      _ ->
-        Enum.filter(result, fn item -> item.campus.university.name == filters["university"] end)
     end
+    |> filter(filters)
+    |> Repo.all()
+    |> Repo.preload([{:campus, :university}])
   end
 
   defp filter(query, filters) do
