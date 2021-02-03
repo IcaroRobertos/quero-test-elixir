@@ -7,8 +7,9 @@ defmodule QueroApiWeb.CourseController do
 
   alias QueroApi.CourseRepository
 
-  def list_courses(conn, _params) do
-    courses = CourseRepository.list_courses()
+  def list_courses(conn, params) do
+    IO.inspect(params)
+    courses = CourseRepository.list_courses(params)
 
     conn
     |> render(
