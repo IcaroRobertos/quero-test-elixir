@@ -59,9 +59,9 @@ defmodule QueroApi.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "ecto.setup"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "run priv/repo/seeds.exs", "test"]
+      "ecto.setup": ["ecto.create --quiet", "ecto.migrate --quiet", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop --quiet", "ecto.setup"],
+      test: ["ecto.reset", "test"]
     ]
   end
 end

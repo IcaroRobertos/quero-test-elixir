@@ -6,10 +6,6 @@ defmodule QueroApiWeb.OfferController do
   def list_offers(conn, _params) do
     offers = OfferRepository.list_offers()
 
-    [head | _tail] = offers
-
-    IO.inspect(head)
-
     conn
     |> render("index.json", %{offers: offers})
   end
