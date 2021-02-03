@@ -9,6 +9,7 @@ defmodule QueroApiWeb.Router do
     pipe_through :api
 
     get "/courses", CourseController, :list_courses
+    get "/offers", OfferController, :list_offers
   end
 
   # Enables LiveDashboard only for development

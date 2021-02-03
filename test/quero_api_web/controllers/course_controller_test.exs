@@ -10,7 +10,7 @@ defmodule QueroApi.CourseControllerTest do
       request = get(conn, "/api/courses")
       response = json_response(request, 200)
 
-      IO.inspect(response)
+      # IO.inspect(response)
     end
   end
 end
