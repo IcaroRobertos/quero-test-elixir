@@ -115,5 +115,31 @@ defmodule QueroApiWeb.OfferControllerTest do
                  item["campus"]["city"] == "São Paulo"
              end)
     end
+
+    test "order offers by price_with_discount asc", %{conn: conn} do
+      request = get(conn, "/api/offers", %{order: "price_asc"})
+      [tail | head] = json_response(request, 200)
+
+      refute Enum.any?(verify_order(:asc, head, tail), fn item -> item == false end)
+    end
+
+    test "order offers by price_with_discount desc", %{conn: conn} do
+      request = get(conn, "/api/offers", %{order: "price_desc"})
+      [tail | head] = json_response(request, 200)
+
+      refute Enum.any?(verify_order(:desc, head, tail), fn item -> item == false end)
+    end
   end
+
+  defp verify_order(:asc, [head | tail], previous) do
+    [previous["price_with_discount"] <= head["price_with_discount"]] ++
+      verify_order(:asc, tail, head)
+  end
+
+  defp verify_order(:desc, [head | tail], previous) do
+    [previous["price_with_discount"] >= head["price_with_discount"]] ++
+      verify_order(:desc, tail, head)
+  end
+
+  defp verify_order(_, [], _previous), do: []
 end

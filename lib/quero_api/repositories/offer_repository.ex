@@ -22,8 +22,17 @@ defmodule QueroApi.OfferRepository do
   def list_offers(filters) do
     from(o in Offer)
     |> filter(filters)
+    |> order(filters)
     |> Repo.all()
     |> Repo.preload([{:course, [{:campus, :university}]}])
+  end
+
+  defp order(query, filters) do
+    case filters["order"] do
+      "price_asc" -> from(q in query, order_by: [asc: q.price_with_discount])
+      "price_desc" -> from(q in query, order_by: [desc: q.price_with_discount])
+      _ -> query
+    end
   end
 
   defp filter(query, filters) do
