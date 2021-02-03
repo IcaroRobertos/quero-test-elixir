@@ -35,7 +35,7 @@ defmodule QueroApi.CourseRepository do
           from(q in query,
             join: campus in assoc(q, :campus),
             join: university in assoc(campus, :university),
-            on: university.name == ^filters["university"]
+            on: university.name == ^value
           )
 
         _ ->
