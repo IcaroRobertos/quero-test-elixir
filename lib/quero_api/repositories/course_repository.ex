@@ -6,12 +6,18 @@ defmodule QueroApi.CourseRepository do
 
   alias QueroApi.{Course, Repo}
 
+  @doc """
+  Create a course
+  """
   def create_course(attrs \\ %{}) do
     %Course{}
     |> Course.changeset(attrs)
     |> Repo.insert()
   end
 
+  @doc """
+  Returns the list of courses
+  """
   def list_courses(filters \\ nil) do
     from(c in Course)
     |> filter(filters)
