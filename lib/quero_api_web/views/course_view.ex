@@ -17,4 +17,13 @@ defmodule QueroApiWeb.CourseView do
       campus: render_one(course.campus, CampusView, "campus.json")
     }
   end
+
+  def render("only_course.json", %{course: course}) do
+    %{
+      name: course.name,
+      kind: course.kind,
+      level: course.level,
+      shift: course.shift
+    }
+  end
 end

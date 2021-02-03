@@ -19,7 +19,7 @@ defmodule QueroApiWeb.OfferView do
       start_date: offer.start_date,
       enrollment_semester: offer.enrollment_semester,
       enabled: offer.enabled,
-      course: render_one(offer.course, CourseView, "course.json"),
+      course: render_one(offer.course, CourseView, "only_course.json"),
       university: render_one(offer.course.campus.university, UniversityView, "university.json"),
       campus: render_one(offer.course.campus, CampusView, "campus.json")
     }
