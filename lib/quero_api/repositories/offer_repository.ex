@@ -3,16 +3,74 @@ defmodule QueroApi.OfferRepository do
   Offer repository
   """
 
+  import Ecto.Query
+
   alias QueroApi.{Offer, Repo}
 
+  @doc """
+  Create a offer
+  """
   def create_offer(attrs \\ %{}) do
     %Offer{}
     |> Offer.changeset(attrs)
     |> Repo.insert()
   end
 
-  def list_offers do
-    Repo.all(Offer)
+  @doc """
+  Returns the list of offers
+  """
+  def list_offers(filters) do
+    from(o in Offer)
+    |> filter(filters)
+    |> Repo.all()
     |> Repo.preload([{:course, [{:campus, :university}]}])
+  end
+
+  defp filter(query, filters) do
+    Enum.reduce(filters, query, fn {key, value}, query ->
+      case key do
+        "kind" ->
+          from(q in query,
+            join: course in assoc(q, :course),
+            on: course.kind == ^value
+          )
+
+        "level" ->
+          from(q in query,
+            join: course in assoc(q, :course),
+            on: course.level == ^value
+          )
+
+        "shift" ->
+          from(q in query,
+            join: course in assoc(q, :course),
+            on: course.shift == ^value
+          )
+
+        "campus" ->
+          from(q in query,
+            join: course in assoc(q, :course),
+            join: campus in assoc(course, :campus),
+            on: campus.city == ^value
+          )
+
+        "course" ->
+          from(q in query,
+            join: course in assoc(q, :course),
+            on: course.name == ^value
+          )
+
+        "university" ->
+          from(q in query,
+            join: course in assoc(q, :course),
+            join: campus in assoc(course, :campus),
+            join: university in assoc(campus, :university),
+            on: university.name == ^value
+          )
+
+        _ ->
+          query
+      end
+    end)
   end
 end

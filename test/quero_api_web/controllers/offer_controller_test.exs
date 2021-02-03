@@ -36,5 +36,84 @@ defmodule QueroApiWeb.OfferControllerTest do
 
       assert length(tail) == 24
     end
+
+    test "filter offers by university name", %{conn: conn} do
+      request = get(conn, "/api/offers", %{university: "Anhanguera"})
+      response = json_response(request, 200)
+
+      assert length(response) == 2
+
+      assert Enum.all?(response, fn item -> item["university"]["name"] == "Anhanguera" end)
+    end
+
+    test "filter offers by course name", %{conn: conn} do
+      request = get(conn, "/api/offers", %{course: "Ciência da Computação"})
+      response = json_response(request, 200)
+
+      assert length(response) == 2
+
+      assert Enum.all?(response, fn item -> item["course"]["name"] == "Ciência da Computação" end)
+    end
+
+    test "filter offers by kind", %{conn: conn} do
+      request = get(conn, "/api/offers", %{kind: "EaD"})
+      response = json_response(request, 200)
+
+      assert length(response) == 9
+
+      assert Enum.all?(response, fn item -> item["course"]["kind"] == "EaD" end)
+    end
+
+    test "filter offers by level", %{conn: conn} do
+      request = get(conn, "/api/offers", %{level: "Bacharelado"})
+      response = json_response(request, 200)
+
+      assert length(response) == 19
+
+      assert Enum.all?(response, fn item -> item["course"]["level"] == "Bacharelado" end)
+    end
+
+    test "filter offers by shift", %{conn: conn} do
+      request = get(conn, "/api/offers", %{shift: "Virtual"})
+      response = json_response(request, 200)
+
+      assert length(response) == 9
+
+      assert Enum.all?(response, fn item -> item["course"]["shift"] == "Virtual" end)
+    end
+
+    test "filter offers by campus city", %{conn: conn} do
+      request = get(conn, "/api/offers", %{campus: "São Paulo"})
+      response = json_response(request, 200)
+
+      assert length(response) == 14
+
+      assert Enum.all?(response, fn item -> item["campus"]["city"] == "São Paulo" end)
+    end
+
+    test "filter offers by all filters", %{conn: conn} do
+      filters = %{
+        university: "UNICSUL",
+        course: "Ciência da Computação",
+        kind: "Presencial",
+        level: "Bacharelado",
+        shift: "Noite",
+        campus: "São Paulo"
+      }
+
+      request = get(conn, "/api/offers", filters)
+      response = json_response(request, 200)
+
+      assert length(response) == 1
+
+      assert Enum.all?(response, fn item ->
+               item["university"]["name"] == "UNICSUL" &&
+                 item["course"]["name"] == "Ciência da Computação" &&
+                 item["course"]["kind"] == "Presencial" &&
+                 item["course"]["level"] == "Bacharelado" &&
+                 item["course"]["shift"] == "Noite" &&
+                 item["campus"]["city"] == "São Paulo"
+             end)
+    end
   end
 end

@@ -1,6 +1,6 @@
 defmodule QueroApiWeb.CourseController do
   @moduledoc """
-  App controller
+  Course controller
   """
 
   use QueroApiWeb, :controller
@@ -11,9 +11,6 @@ defmodule QueroApiWeb.CourseController do
     courses = CourseRepository.list_courses(params)
 
     conn
-    |> render(
-      "index.json",
-      %{courses: courses}
-    )
+    |> render("index.json", %{courses: courses})
   end
 end

@@ -18,7 +18,7 @@ defmodule QueroApi.CourseRepository do
   @doc """
   Returns the list of courses
   """
-  def list_courses(filters \\ nil) do
+  def list_courses(filters) do
     from(c in Course)
     |> filter(filters)
     |> Repo.all()
