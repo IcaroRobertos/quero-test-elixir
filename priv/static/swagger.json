@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "QueroApi"
   },
-  "host": "localhost:4000",
+  "host": "34.234.217.126",
   "basePath": "/api",
   "tags": [
     {
