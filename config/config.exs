@@ -18,6 +18,12 @@ config :quero_api, QueroApiWeb.Endpoint,
   pubsub_server: QueroApi.PubSub,
   live_view: [signing_salt: "+95iHvcK"]
 
+# Configure cors
+config :cors_plug,
+  max_age: 86_400,
+  send_preflight_response?: true,
+  methods: ["GET", "OPTIONS"]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
