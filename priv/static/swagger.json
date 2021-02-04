@@ -1,0 +1,127 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation about paths in QueroApi",
+    "version": "1.0.0",
+    "title": "QueroApi"
+  },
+  "host": "localhost:4000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "courses",
+      "description": "Everything about courses path"
+    },
+    {
+      "name": "offers",
+      "description": "Everything about offers path"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/courses": {
+      "get": {
+        "tags": [
+          "courses"
+        ],
+        "summary": "List of courses",
+        "description": "Get and filter a list of courses",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "kind",
+            "description": "Filter courses by kind",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "level",
+            "description": "Filter courses by level",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "shift",
+            "description": "Filter courses by shift",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "university",
+            "description": "Filter courses by university name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of courses"
+          }
+        }
+      }
+    },
+    "/offers": {
+      "get": {
+        "tags": [
+          "offers"
+        ],
+        "summary": "List of offers",
+        "description": "Get and filter a list of offers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "kind",
+            "description": "Filter offers by course kind",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "level",
+            "description": "Filter courses by course level",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "shift",
+            "description": "Filter courses by course shift",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "university",
+            "description": "Filter offers by university name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "course",
+            "description": "Filter offers by course name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "campus",
+            "description": "Filter offers by campus city",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of offers"
+          }
+        }
+      }
+    }
+  }
+}

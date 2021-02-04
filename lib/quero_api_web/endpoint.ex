@@ -24,7 +24,8 @@ defmodule QueroApiWeb.Endpoint do
     at: "/",
     from: :quero_api,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    # only: ~w(swagger.json),
+    headers: %{"Access-Control-Allow-Origin" => "http://localhost:8888"}
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

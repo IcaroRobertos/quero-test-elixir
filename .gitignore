@@ -25,7 +25,7 @@ quero_api-*.tar
 # Since we are building assets from assets/,
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
-/priv/static/
+# /priv/static/
 
 # Elixir Language Server (ElixirLS) to VS Code
 .elixir_ls
