@@ -20,6 +20,7 @@ config :quero_api, QueroApiWeb.Endpoint,
 
 # Configure cors
 config :cors_plug,
+  origin: ["*"],
   max_age: 86_400,
   send_preflight_response?: true,
   methods: ["GET", "OPTIONS"]
