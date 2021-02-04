@@ -22,7 +22,7 @@ WORKDIR /app
 RUN mix local.hex --force && mix local.rebar --force
 
 # Install dependencies
-RUN mix deps.get
+RUN mix deps.get --only prod
 
 # Compile the project
 RUN mix compile
