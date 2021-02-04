@@ -105,3 +105,21 @@ Now you can visit [`localhost:80`](http://localhost:80) from your browser.
 # Demo Application
 
 You can visit a demonstration on [http://34.234.217.126](http://34.234.217.126)
+
+# Validate demo app
+
+You can use the Swagger-UI to validate the API.
+
+- Pull docker image
+
+```
+docker pull swaggerapi/swagger-ui
+```
+
+- Run Swagger-UI image
+
+```
+docker run -p 8888:8080 -e "URL=http://34.234.217.126/swagger.json" swaggerapi/swagger-ui
+```
+
+Visit [localhost:8888](http://localhost:8888) and have fun!
