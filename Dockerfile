@@ -21,8 +21,11 @@ WORKDIR /app
 # Install hex package manager
 RUN mix local.hex --force && mix local.rebar --force
 
+# Install dependencies
+RUN mix deps.get
+
 # Compile the project
-RUN MIX_ENV=prod mix compile
+RUN mix compile
 
 # Install phoenix framework
 RUN mix archive.install hex phx_new 1.5.7
