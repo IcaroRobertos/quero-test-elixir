@@ -80,6 +80,12 @@ paths:
           description: "Filter offers by campus city"
           required: false
           type: string
+        - in: "query"
+          name: "order"
+          description: "To order list of offers by price with discount"
+          required: false
+          type: string
+          enum: [price_asc, price_des]
       responses:
         "200":
           description: "A list of offers"
