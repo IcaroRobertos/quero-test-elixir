@@ -51,7 +51,7 @@ mix ecto.migrate
 - To populate tables:
 
 ```
-run priv/repo/seeds.exs
+mix run priv/repo/seeds.exs
 ```
 
 if you need restart database, use:
