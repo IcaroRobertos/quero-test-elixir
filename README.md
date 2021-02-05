@@ -104,7 +104,10 @@ Now you can visit [`localhost:80`](http://localhost:80) from your browser.
 
 # Demo Application
 
-You can visit a demonstration on [http://34.234.217.126](http://34.234.217.126)
+You can visit a demonstration of:
+
+- List of courses: [http://34.234.217.126/api/courses](http://34.234.217.126/api/courses)
+- List of offers: [http://34.234.217.126/api/offers](http://34.234.217.126/api/offers)
 
 # Validate demo app
 
